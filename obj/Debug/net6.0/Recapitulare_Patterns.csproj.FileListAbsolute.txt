@@ -1,0 +1,14 @@
+C:\mycode\csharp\oop-basics\abstractizarea\Interfete\Recapitulare_Patterns\bin\Debug\net6.0\Recapitulare_Patterns.exe
+C:\mycode\csharp\oop-basics\abstractizarea\Interfete\Recapitulare_Patterns\bin\Debug\net6.0\Recapitulare_Patterns.deps.json
+C:\mycode\csharp\oop-basics\abstractizarea\Interfete\Recapitulare_Patterns\bin\Debug\net6.0\Recapitulare_Patterns.runtimeconfig.json
+C:\mycode\csharp\oop-basics\abstractizarea\Interfete\Recapitulare_Patterns\bin\Debug\net6.0\Recapitulare_Patterns.dll
+C:\mycode\csharp\oop-basics\abstractizarea\Interfete\Recapitulare_Patterns\bin\Debug\net6.0\Recapitulare_Patterns.pdb
+C:\mycode\csharp\oop-basics\abstractizarea\Interfete\Recapitulare_Patterns\obj\Debug\net6.0\Recapitulare_Patterns.GeneratedMSBuildEditorConfig.editorconfig
+C:\mycode\csharp\oop-basics\abstractizarea\Interfete\Recapitulare_Patterns\obj\Debug\net6.0\Recapitulare_Patterns.AssemblyInfoInputs.cache
+C:\mycode\csharp\oop-basics\abstractizarea\Interfete\Recapitulare_Patterns\obj\Debug\net6.0\Recapitulare_Patterns.AssemblyInfo.cs
+C:\mycode\csharp\oop-basics\abstractizarea\Interfete\Recapitulare_Patterns\obj\Debug\net6.0\Recapitulare_Patterns.csproj.CoreCompileInputs.cache
+C:\mycode\csharp\oop-basics\abstractizarea\Interfete\Recapitulare_Patterns\obj\Debug\net6.0\Recapitulare_Patterns.dll
+C:\mycode\csharp\oop-basics\abstractizarea\Interfete\Recapitulare_Patterns\obj\Debug\net6.0\refint\Recapitulare_Patterns.dll
+C:\mycode\csharp\oop-basics\abstractizarea\Interfete\Recapitulare_Patterns\obj\Debug\net6.0\Recapitulare_Patterns.pdb
+C:\mycode\csharp\oop-basics\abstractizarea\Interfete\Recapitulare_Patterns\obj\Debug\net6.0\Recapitulare_Patterns.genruntimeconfig.cache
+C:\mycode\csharp\oop-basics\abstractizarea\Interfete\Recapitulare_Patterns\obj\Debug\net6.0\ref\Recapitulare_Patterns.dll

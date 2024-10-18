@@ -1,0 +1,4 @@
+User,1,Client,mario23@gmail.com,12321
+User,2,Angajat,andree132@yahoo.com,18771
+User,3,Client,andrensh@gmail.com,287639
+User,4,Angajat,maria23@yahoo.com,2977392
