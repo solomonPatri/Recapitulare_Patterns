@@ -11,15 +11,14 @@ namespace Recapitulare_Patterns
 {
     public class View
     {
-
-        private IUserQueryService _servicequery;
         private IUserCommandService _servicecomand;
+        private IUserQueryService _servicequery;
 
-        public View(IUserQueryService userQueryService,IUserCommandService usercomand)
+        public View()
         {
             
-            this._servicecomand= usercomand;
-            this._servicequery = userQueryService;
+            this._servicecomand= UserCommandSingleton.ServiceCommand;
+            this._servicequery = UserQuerySingleton.UserQueryService;
 
             this.play();
 
@@ -226,26 +225,6 @@ namespace Recapitulare_Patterns
 
 
         }
-
-
-       public void UpdateCLient()
-        {
-           
-
-
-
-
-
-        }
-
-        public void UpdateAngajat()
-        {
-
-
-
-        }
-
-
 
 
 

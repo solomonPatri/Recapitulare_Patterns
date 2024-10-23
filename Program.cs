@@ -9,12 +9,8 @@ internal class Program
     private static void Main(string[] args)
     {
 
-        IUserRepo repo = new UserRepo();
-       
-        IUserCommandService comad = new UserComandService(repo);
-        IUserQueryService queryService = new UserQueryService(repo);
 
-        View view = new View(queryService,comad);
+        View view = new View();
 
         view.play();
         

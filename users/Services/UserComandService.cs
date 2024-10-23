@@ -13,9 +13,9 @@ namespace Recapitulare_Patterns.users.Services
 
         private IUserRepo _repo;
 
-        public UserComandService(IUserRepo userQueryService)
+        public UserComandService()
         {
-            this._repo = userQueryService;
+            this._repo = UserRepoSingleton.Instance;
 
 
         }
