@@ -1,4 +1,5 @@
-User,1,Client,mario23@gmail.com,12321
-User,2,Angajat,andree132@yahoo.com,18771
-User,3,Client,andrensh@gmail.com,287639
-User,4,Angajat,maria23@yahoo.com,2977392
+Client,1,mario23@gmail.com,726617,Mario,23,str victorie n4
+Angajat,2,andree132@yahoo.com,1877,Andres,3482773,Masaje
+Client,3,andrensh@gmail.com,287639,Andreas,14,str celada nr8
+Client,4,maria23@yahoo.com,2977392,Maria,29,calle jovellanos n9
+Angajat,5,anaioana23@yahoo.com,188281,Ioana,887662,Make-Up

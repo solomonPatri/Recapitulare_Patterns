@@ -1,0 +1,29 @@
+User,1,Client,mario23@gmail.com,12321
+User,2,Angajat,andree132@yahoo.com,18771
+User,3,Client,andrensh@gmail.com,287639
+User,Angajat,maria23@yahoo.com,2977392
+
+ 
+
+
+foreach(var mas in repo.GetUsers())
+  {
+
+      Console.WriteLine(mas.ToString());
+
+
+  }
+
+
+
+var re = from repos in repo.GetUsers()
+
+         where repos.Type.Equals("Client")
+
+         select repos;
+
+  foreach(var res in re)
+  {
+      Console.WriteLine(res.ToString());
+
+  }

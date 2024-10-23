@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Recapitulare_Patterns.users.models;
 
 namespace Recapitulare_Patterns.users.Repository
 {
@@ -36,9 +38,14 @@ namespace Recapitulare_Patterns.users.Repository
                         switch (line.Split(",")[0])
                         {
 
-                            case "User":
-                                User user = new User(line);
-                                this._users.Add(user);
+                            case "Client":
+                                Client cl = new Client(line);
+                                this._users.Add(cl);
+                                break;
+                            case "Angajat":
+                                Angajat angajat = new Angajat(line);
+                                this._users.Add(angajat);
+
                                 break;
                             default:
 
@@ -48,9 +55,7 @@ namespace Recapitulare_Patterns.users.Repository
 
                         }
 
-
-
-
+                     
 
 
                     }
@@ -158,12 +163,16 @@ namespace Recapitulare_Patterns.users.Repository
         }
 
 
-        
-        public User UpdateUser( User user)
+
+        //   User
+       
+        public User UpdateUser(User user)
         {
 
            User editableUser=this.FindUserById(user.Id);
 
+
+            //verificam fieldurile userului
 
             if (user.Username != null)
             {
@@ -175,11 +184,40 @@ namespace Recapitulare_Patterns.users.Repository
                 editableUser.Password = user.Password;
             }
 
-            if(user.Type != null)
+         
+            //verificam fieldurile clientului
+            if(user is Client)
             {
-                editableUser.Type = user.Type;
+               
+
+                Client client = (Client)user;
+
+                Client editableClient = (Client)editableUser;
+
+
+                if(client.Age!=0)
+                {
+
+                    editableClient.Age = client.Age;
+                   
+                    
+                }
+
+
             }
 
+            if(user is Angajat)
+            {
+                 Angajat angjat = (Angajat)user;
+                 Angajat editableAngajat = (Angajat)editableUser;
+                
+                if(angjat.Salariu !=0)
+                {
+                    editableAngajat.Salariu = angjat.Salariu;
+                   
+
+                }
+            }
 
             return editableUser;
 

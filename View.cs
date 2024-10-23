@@ -1,4 +1,4 @@
-﻿using Recapitulare_Patterns.users;
+﻿using Recapitulare_Patterns.users.models;
 using Recapitulare_Patterns.users.Services;
 using System;
 using System.Collections.Generic;
@@ -107,8 +107,9 @@ namespace Recapitulare_Patterns
             Console.WriteLine("Introduceti datele corespunzatoare:" + "\n");
             
             Console.WriteLine("Username: ");
-            string username = Console.ReadLine(); Console.WriteLine("Type:" + "\n");
-            string type = "User";
+            string username = Console.ReadLine();
+            Console.WriteLine("Type:");
+            string type = Console.ReadLine();
             Console.WriteLine("Password: ");
             string Password = Console.ReadLine();
 
@@ -121,17 +122,19 @@ namespace Recapitulare_Patterns
 
             User user = _servicequery.ReturnByUsername(username);
 
-            if(user.Username != username)
+            if ((user as Client).Username != username && (user as Angajat).Username != (username))
             {
-                
-                _servicecomand.Add(newuser);
+                if (user.Username != username)
+                {
 
+                    _servicecomand.Add(newuser);
+
+                }
+                else
+                {
+                    Console.WriteLine("Deja exista acest user");
+                }
             }
-            else
-            {
-                Console.WriteLine("Deja exista acest user");
-            }
-           
 
 
            
@@ -170,28 +173,52 @@ namespace Recapitulare_Patterns
 
             User user = _servicequery.ReturnByUsername(username);
             
-            if (user != null)
-            {
-                Console.WriteLine("Introduceti datele cele noi" + "\n");
-                Console.WriteLine("Username:");
-                string usernam = Console.ReadLine();
-                Console.WriteLine("Parola: ");
-                string parola = Console.ReadLine();
-                Console.WriteLine("Type: Client/Angajat");
-                string type = Console.ReadLine();
+            
+             if ((user is Client) != null)
+                {
+                Console.WriteLine("Introduceti acuma noile date" + "\n");
+                Console.WriteLine("Parola");
+                string pass = Console.ReadLine();
+                Console.WriteLine("Age:");
+                int age = int.Parse(Console.ReadLine());
 
-                User update = User.UserBuilder
-                    .Create()
-                    .Id(user.Id)
-                    .Type(type)
-                    .Username(usernam)
-                    .Password(parola)
-                    .Build();
-                _servicecomand.UpdateUser(update);
-            }
-            else
-            {
-                Console.WriteLine("Nu exista userul pentru al modifica");
+                    Client editableCl = Client.ClientBuilder
+                        .Create()
+                        .SetId(user.Id)
+                        .SetUsername (username)
+                        .SetPassword(pass)
+                        .SetAgePerson(age)
+                        .Build();
+                    _servicecomand.UpdateUser(editableCl);
+
+                    Console.WriteLine("Clientul sa modificat cu succes");
+
+             }
+             else
+                {
+                    if((user is Angajat)!=null) {
+
+                    Console.WriteLine("Introduceti acuma noile date" + "\n");
+                    Console.WriteLine("Parola");
+                    string passw = Console.ReadLine();
+                    Console.WriteLine("Salariul");
+                        float salariul = float.Parse(Console.ReadLine());
+
+                        Angajat editableAngajat = Angajat.AngajatBuilder
+                            .Create()
+                            .SetId(user.Id)
+                            .SetUsername(username)
+                            .SetPassword(passw)
+                            .SetSalariuAnfajat(salariul)
+                            .Build();
+                        _servicecomand.UpdateUser(editableAngajat);
+                        Console.WriteLine("Angajatul sa modificat cu succes");
+                    
+                    }
+
+
+
+                
             }
 
 
@@ -201,9 +228,22 @@ namespace Recapitulare_Patterns
         }
 
 
-       
+       public void UpdateCLient()
+        {
+           
 
 
+
+
+
+        }
+
+        public void UpdateAngajat()
+        {
+
+
+
+        }
 
 
 

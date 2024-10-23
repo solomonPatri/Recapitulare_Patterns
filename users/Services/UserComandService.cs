@@ -1,4 +1,5 @@
-﻿using Recapitulare_Patterns.users.Repository;
+﻿using Recapitulare_Patterns.users.models;
+using Recapitulare_Patterns.users.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,12 +54,25 @@ namespace Recapitulare_Patterns.users.Services
             User update = _repo.FindUserById(user.Id);
             if(update != null)
             {
-
+               
                 this._repo.UpdateUser(user);
                 return update;
 
 
             }
+            if ((update is Client)!= null)
+            {
+                this._repo.UpdateUser(user);
+                return update;
+            }
+            if ((update is Angajat) != null)
+            {
+                this._repo.UpdateUser(user);
+                return update;
+            }
+            
+
+
             return null;
 
         }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Recapitulare_Patterns.users
+namespace Recapitulare_Patterns.users.models
 {
-    public class User: IComparable<User>
+    public class User : IComparable<User>
     {
 
         private int _id;
@@ -17,10 +17,10 @@ namespace Recapitulare_Patterns.users
         public User(string Propietati)
         {
             string[] text = Propietati.Split(',');
-            this._type = text[0];
-            this._id = int.Parse(text[1]);
-            this._username = text[3];
-            this._password = text[4];
+            _type = text[0];
+            _id = int.Parse(text[1]);
+            _username = text[2];
+            _password = text[3];
 
 
         }
@@ -29,6 +29,10 @@ namespace Recapitulare_Patterns.users
         public User()
         {
 
+            this.Id= 0;
+            this.Type = null;
+            this.Username = null;
+            this.Password = null;
         }
 
         public int Id
@@ -70,25 +74,23 @@ namespace Recapitulare_Patterns.users
 
         }
 
-        
-
 
         public class UserBuilder
         {
             private readonly User _user;
 
-            private UserBuilder (User user)
+            private UserBuilder(User user)
             {
                 _user = user;
             }
-            public static UserBuilder Create ()
+            public static UserBuilder Create()
             {
 
-                return new UserBuilder (new User ());
+                return new UserBuilder(new User());
 
 
             }
-            
+
             public UserBuilder Id(int id)
             {
                 _user.Id = id;
@@ -131,7 +133,7 @@ namespace Recapitulare_Patterns.users
         public virtual string ToString()
         {
             string t = " ";
-            t += "Id" + +Id+ "\n";
+            t += "Id" + +Id + "\n";
             t += "type: " + Type + "\n";
             t += "Username: " + Username + "\n";
             t += "Password:" + Password + "\n";
@@ -142,7 +144,7 @@ namespace Recapitulare_Patterns.users
 
         public virtual bool Equals(object user)
         {
-            return user is User other && this.Id.Equals(other.Id);
+            return user is User other && Id.Equals(other.Id);
         }
 
 

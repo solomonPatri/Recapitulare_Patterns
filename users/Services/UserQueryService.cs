@@ -1,4 +1,5 @@
-﻿using Recapitulare_Patterns.users.Repository;
+﻿using Recapitulare_Patterns.users.models;
+using Recapitulare_Patterns.users.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
