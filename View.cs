@@ -1,4 +1,5 @@
-﻿using Recapitulare_Patterns.users.models;
+﻿using Recapitulare_Patterns.users;
+using Recapitulare_Patterns.users.models;
 using Recapitulare_Patterns.users.Services;
 using System;
 using System.Collections.Generic;
@@ -17,8 +18,8 @@ namespace Recapitulare_Patterns
         public View()
         {
             
-            this._servicecomand= UserCommandSingleton.ServiceCommand;
-            this._servicequery = UserQuerySingleton.UserQueryService;
+            this._servicecomand= UserFactory.CreateUserService<IUserCommandService>();
+            this._servicequery = UserFactory.CreateUserService<IUserQueryService>();
 
             this.play();
 
