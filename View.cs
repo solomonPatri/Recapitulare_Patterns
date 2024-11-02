@@ -1,9 +1,11 @@
 ﻿using Recapitulare_Patterns.users;
+using Recapitulare_Patterns.users.exceptions;
 using Recapitulare_Patterns.users.models;
 using Recapitulare_Patterns.users.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +23,6 @@ namespace Recapitulare_Patterns
             this._servicecomand= UserFactory.CreateUserService<IUserCommandService>();
             this._servicequery = UserFactory.CreateUserService<IUserQueryService>();
 
-            this.play();
 
 
 
@@ -105,37 +106,20 @@ namespace Recapitulare_Patterns
         public void AdaugareUser()
         {
             Console.WriteLine("Introduceti datele corespunzatoare:" + "\n");
-            
             Console.WriteLine("Username: ");
             string username = Console.ReadLine();
-            Console.WriteLine("Type:");
-            string type = Console.ReadLine();
-            Console.WriteLine("Password: ");
-            string Password = Console.ReadLine();
-
-            User newuser = User.UserBuilder
-            .Create()
-            .Username(username)
-            .Password(Password)
-            .Type(type)
-            .Build();
-
-            User user = _servicequery.ReturnByUsername(username);
-
-            if ((user as Client).Username != username && (user as Angajat).Username != (username))
+             User user = _servicequery.ReturnByUsername(username);
+           
+            try
             {
-                if (user.Username != username)
-                {
+              
+                _servicecomand.Add(user);
 
-                    _servicecomand.Add(newuser);
+            }catch(UserAlreadyExistException e)
+            {
+                Console.WriteLine(e.Message);
 
-                }
-                else
-                {
-                    Console.WriteLine("Deja exista acest user");
-                }
             }
-
 
            
 
@@ -144,20 +128,24 @@ namespace Recapitulare_Patterns
         public void DeleteUser()
         {
 
-            Console.WriteLine("Introduceti datele corespunzatoare:" + "\n");
             
-            Console.WriteLine("Username: ");
-            string username = Console.ReadLine();
+          
 
-            User user = _servicequery.ReturnByUsername(username);
+            int id = 123;
+           
+       
+            try
+            {
 
-            if (user != null)
+
+
+
+                _servicecomand.Delete(id);
+
+            }catch(UserNotFoundException e)
             {
-                _servicecomand.Delete(user.Id);
-            }
-            else
-            {
-                Console.WriteLine("Nu exista acest user");
+
+                Console.WriteLine(e.Message);
             }
 
 
@@ -165,63 +153,36 @@ namespace Recapitulare_Patterns
 
 
         }
+
+
+
+
+
         public void Update()
         {
             Console.WriteLine("Introduceti userul care doriti sa modificati: " + "\n");
             Console.WriteLine("Username:");
             string username = Console.ReadLine();
-
             User user = _servicequery.ReturnByUsername(username);
-            
-            
-             if ((user is Client) != null)
+            try
+            {
+                try
                 {
-                Console.WriteLine("Introduceti acuma noile date" + "\n");
-                Console.WriteLine("Parola");
-                string pass = Console.ReadLine();
-                Console.WriteLine("Age:");
-                int age = int.Parse(Console.ReadLine());
+                    _servicecomand.UpdateUser(user);
 
-                    Client editableCl = Client.ClientBuilder
-                        .Create()
-                        .SetId(user.Id)
-                        .SetUsername (username)
-                        .SetPassword(pass)
-                        .SetAgePerson(age)
-                        .Build();
-                    _servicecomand.UpdateUser(editableCl);
-
-                    Console.WriteLine("Clientul sa modificat cu succes");
-
-             }
-             else
+                }catch(UserNotUpdateException up)
                 {
-                    if((user is Angajat)!=null) {
-
-                    Console.WriteLine("Introduceti acuma noile date" + "\n");
-                    Console.WriteLine("Parola");
-                    string passw = Console.ReadLine();
-                    Console.WriteLine("Salariul");
-                        float salariul = float.Parse(Console.ReadLine());
-
-                        Angajat editableAngajat = Angajat.AngajatBuilder
-                            .Create()
-                            .SetId(user.Id)
-                            .SetUsername(username)
-                            .SetPassword(passw)
-                            .SetSalariuAnfajat(salariul)
-                            .Build();
-                        _servicecomand.UpdateUser(editableAngajat);
-                        Console.WriteLine("Angajatul sa modificat cu succes");
-                    
-                    }
+                    Console.WriteLine(up.Message);
+                }
 
 
+            }catch(UserNotFoundException not)
+            {
 
-                
+                Console.WriteLine(not.Message);
             }
 
-
+             
 
 
 

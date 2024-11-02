@@ -9,24 +9,24 @@ namespace Recapitulare_Patterns.users.Services
     public  class UserQuerySingleton
     {
 
-        private static IUserQueryService _userQueryService = null;
+        private static IUserQueryService instance = null;
 
         private UserQuerySingleton()
         {
 
         }
 
-        public static IUserQueryService UserQueryService
+        public static IUserQueryService Instance
         {
             get
             {
-                if( _userQueryService == null)
+                if( instance == null)
                 {
 
-                    _userQueryService= new UserQueryService();
+                    instance= new UserQueryService();
 
 
-                }return _userQueryService;
+                }return instance;
             }
 
 

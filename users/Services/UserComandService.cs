@@ -1,4 +1,5 @@
-﻿using Recapitulare_Patterns.users.models;
+﻿using Recapitulare_Patterns.users.exceptions;
+using Recapitulare_Patterns.users.models;
 using Recapitulare_Patterns.users.Repository;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,10 @@ namespace Recapitulare_Patterns.users.Services
     public class UserComandService : IUserCommandService
     {
 
-        private IUserRepo _repo;
-
+        IUserRepo _repo;
         public UserComandService()
         {
-            this._repo = UserRepoSingleton.Instance;
-
+            this._repo = UserFactory.CreateUserService<IUserRepo>();
 
         }
 
@@ -27,9 +26,11 @@ namespace Recapitulare_Patterns.users.Services
             {
 
                return this._repo.AddUser(user);
+                
 
             }
-            return null;
+
+            throw new UserAlreadyExistException();
 
 
         }
@@ -45,35 +46,25 @@ namespace Recapitulare_Patterns.users.Services
 
 
             }
-            return null;           
+
+            throw new UserNotFoundException();
         }
 
         public User UpdateUser(User user)
         {
 
             User update = _repo.FindUserById(user.Id);
-            if(update != null)
+            if (update != null)
             {
-               
-                this._repo.UpdateUser(user);
-                return update;
+         
+                    this._repo.UpdateUser(user);
+                throw new UserNotUpdateException();   //exista dar nu se poate moficia
 
 
             }
-            if ((update is Client)!= null)
-            {
-                this._repo.UpdateUser(user);
-                return update;
-            }
-            if ((update is Angajat) != null)
-            {
-                this._repo.UpdateUser(user);
-                return update;
-            }
+
+            throw new UserNotFoundException(); // nu exista atunci returnam mesajul Doesm't Exist!!!
             
-
-
-            return null;
 
         }
 

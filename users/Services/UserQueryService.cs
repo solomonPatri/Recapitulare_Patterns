@@ -15,7 +15,7 @@ namespace Recapitulare_Patterns.users.Services
 
         public UserQueryService()
         {
-            this._repo = UserRepoSingleton.Instance;
+            this._repo = UserFactory.CreateUserService<IUserRepo>();
         }
 
         public IEnumerable<User> GetAll()

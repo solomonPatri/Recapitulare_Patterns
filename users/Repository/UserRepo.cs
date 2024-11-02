@@ -86,7 +86,7 @@ namespace Recapitulare_Patterns.users.Repository
             return filepath;
 
 
-        }
+        }       
 
        
         public IEnumerable<User> GetUsers()
@@ -165,62 +165,49 @@ namespace Recapitulare_Patterns.users.Repository
 
 
         //   User
-       
+
         public User UpdateUser(User user)
         {
 
-           User editableUser=this.FindUserById(user.Id);
+            User editableUser = this.FindUserById(user.Id);
 
 
             //verificam fieldurile userului
 
             if (user.Username != null)
             {
-               editableUser.Username = user.Username;
+                editableUser.Username = user.Username;
+
             }
 
-            if(user.Password != null)
+            if (user.Password != null)
             {
                 editableUser.Password = user.Password;
             }
 
-         
-            //verificam fieldurile clientului
-            if(user is Client)
+
+            ////verificam fieldurile clientului
+            if (user is Client)
             {
-               
+
 
                 Client client = (Client)user;
 
                 Client editableClient = (Client)editableUser;
 
 
-                if(client.Age!=0)
+                if (client.Age != 0)
                 {
 
                     editableClient.Age = client.Age;
-                   
-                    
+
+
                 }
 
-
             }
-
-            if(user is Angajat)
-            {
-                 Angajat angjat = (Angajat)user;
-                 Angajat editableAngajat = (Angajat)editableUser;
-                
-                if(angjat.Salariu !=0)
-                {
-                    editableAngajat.Salariu = angjat.Salariu;
-                   
-
-                }
-            }
-
-            return editableUser;
-
+                return editableUser;
+            
+       
         }
 
     }

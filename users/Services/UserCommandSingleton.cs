@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.SymbolStore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace Recapitulare_Patterns.users.Services
     public class UserCommandSingleton
     {
 
-        private static IUserCommandService _serviceCommand = null;
+        private static IUserCommandService instance = null;
 
         private UserCommandSingleton() { 
         
@@ -17,21 +18,21 @@ namespace Recapitulare_Patterns.users.Services
         
         }
 
-        public static IUserCommandService ServiceCommand
+        public static IUserCommandService Instance
         {
 
             get
             {
-                if (_serviceCommand == null)
+                if (instance == null)
                 {
-                    _serviceCommand = new UserComandService();
+                    instance = new UserComandService();
 
 
 
 
 
                 }
-                return _serviceCommand;
+                return instance;
             }
 
 
