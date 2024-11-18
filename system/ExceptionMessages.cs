@@ -13,8 +13,8 @@ namespace Recapitulare_Patterns.system
         public const string UserNotFoundException = "The user doesn't exist";
         public const string UserNotUpdateException = "This user can't be modified! Try again";
         public const string UserUsernameEqualsException = "Deja Exista un User cu acelasi Username";
-
-
+        public const string UserSuccesAddExecption = " S-a adaugat cu succes user-ul";
+        public const string UserSuccesDeleteExecption = "S-a Sters su succes user-ul";
 
     }
 }

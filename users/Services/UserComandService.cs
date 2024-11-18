@@ -31,18 +31,21 @@ namespace Recapitulare_Patterns.users.Services
 
                     if (client.Username.Equals(user.Username))
                     {
-                        return this._repo.AddUser(client);
+                         this._repo.AddUser(client);
+                        throw new UserSuccesAddException();
                     }
+                    
                 }
                 if (user is Angajat)
                 {
                     Angajat ang = user as Angajat;
                     if (ang.Username.Equals(user.Username))
                     {
-                        return this._repo.AddUser(ang);
+                       this._repo.AddUser(ang);
+                        throw new UserSuccesAddException();
                     }
                 }
-                
+               
 
             }
 
@@ -59,6 +62,8 @@ namespace Recapitulare_Patterns.users.Services
             {
                 this._repo.DeleteUser(id);
                 return finduser;
+
+                throw new  UserSuccesDeleteException();
 
 
             }

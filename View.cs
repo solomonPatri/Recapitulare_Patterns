@@ -47,14 +47,12 @@ namespace Recapitulare_Patterns
                         break;
                     case 2:
                         AdaugareUser();
-                        Console.WriteLine("\n");
-                        Console.WriteLine("Userul sa adaugat cu succes");
+                        
                         break;
 
                     case 3:
                         DeleteUser();
-                        Console.WriteLine("\n");
-                        Console.WriteLine("Userul sters cu succes");
+                        
 
 
                         break;
@@ -130,11 +128,16 @@ namespace Recapitulare_Patterns
                             .Build();
 
                         _servicecomand.Add(newang);
-                       }catch(UserAlreadyExistException e)
+                    }
+                    catch (UserSuccesAddException ad) {
+
+                        Console.WriteLine(ad.Message);
+
+                    } catch (UserAlreadyExistException e)
                     {
                         Console.WriteLine(e.Message);
                     }
-                      
+
                     break;
                 case 2:
                     try
@@ -164,19 +167,15 @@ namespace Recapitulare_Patterns
                         _servicecomand.Add(newcl);
 
 
+                    }catch(UserSuccesAddException ad) {
+
+
+                        Console.WriteLine(ad.Message);
+
                     }catch(UserAlreadyExistException es)
                     {
                         Console.WriteLine(es.Message);
                     }
-
-
-
-
-
-
-
-
-
                     break;
             }
 
@@ -206,6 +205,11 @@ namespace Recapitulare_Patterns
 
 
             }
+            catch (UserSuccesDeleteException de)
+            {
+                Console.WriteLine(de.Message);
+
+            }
             catch (UserNotFoundException not)
             {
                 Console.WriteLine(not.Message);
@@ -215,10 +219,6 @@ namespace Recapitulare_Patterns
 
 
         }
-
-
-
-
 
         public void Update()
         {
