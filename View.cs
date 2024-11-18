@@ -96,99 +96,108 @@ namespace Recapitulare_Patterns
 
         public void AdaugareUser()
         {
-            Console.WriteLine("Ce doriti sa adaugati :" + "\n");
-            Console.WriteLine("1-> Angajat" + "\n" + "2-> CLient" + "\n");
+            Console.WriteLine("Introduceti ce doriti sa adaugati:");
+            string type = Console.ReadLine();
 
-            int nr = int.Parse(Console.ReadLine());
-
-            switch (nr)
+            try
             {
-                case 1:
-                    try
-                    {
-                        Console.WriteLine("Username:");
-                        string username = Console.ReadLine();
-                        Console.WriteLine("Password");
-                        string pass = Console.ReadLine();
-                        Console.WriteLine("Name: ");
-                        string name = Console.ReadLine();
-                        Console.WriteLine("Salariul: ");
-                        float sal = float.Parse(Console.ReadLine());
-                        Console.WriteLine("Tipul de serviciu: ");
-                        string typeserv = Console.ReadLine();
+                if (type.Equals("Angajat")){
 
-                        Angajat newang = Angajat.AngajatBuilder
-                            .Create()
-                            .SetId(_servicequery.GeneratenextId())
-                            .SetUsername(username)
-                            .SetPassword(pass)
-                            .SetnameAngajat(name)
-                            .SetSalariuAnfajat(sal)
-                            .SetServiciePerson(typeserv)
-                            .Build();
-
-                        _servicecomand.Add(newang);
-                    }
-                    catch (UserSuccesAddException ad) {
-
-                        Console.WriteLine(ad.Message);
-
-                    } catch (UserUsernameEqualsException e)
-                    {
-                        Console.WriteLine(e.Message);
-                    }
-
-                    break;
-                case 2:
-                    try
-                    {
-                        Console.WriteLine("Username:");
-                        string userna = Console.ReadLine();
-                        Console.WriteLine("Password");
-                        string password = Console.ReadLine();
-                        Console.WriteLine("Name: ");
-                        string names = Console.ReadLine();
-                        Console.WriteLine("Varsta: ");
-                        int age = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Adresa: ");
-                        string adress = Console.ReadLine();
+                   Angajat angnew = AdaugareAngajat();
+                    _servicecomand.Add(angnew);
 
 
-                        Client newcl = Client.ClientBuilder
-                            .Create()
-                            .SetId(_servicequery.GeneratenextId())
-                            .SetUsername(userna)
-                            .SetPassword(password)
-                            .SetNamePerson(names)
-                            .SetAgePerson(age)
-                            .SetAdressPerson(adress)
-                            .Build();
+                }
+                if (type.Equals("Client"))
+                {
+                    Client newcl = AdaugareClient();
+                    _servicecomand.Add(newcl);
 
-                        _servicecomand.Add(newcl);
+                }
 
-
-                    }catch(UserSuccesAddException ad) {
-
-
-                        Console.WriteLine(ad.Message);
-
-                    }catch(UserUsernameEqualsException es)
-                    {
-                        Console.WriteLine(es.Message);
-                    }
-                    break;
+            }catch(UserSuccesAddException ad)
+            {
+                Console.WriteLine(ad.Message);
+            }
+            catch(UserAlreadyExistException ex)
+            {
+                Console.WriteLine(ex.Message);
             }
 
+          
+
+        }
+
+        public Angajat AdaugareAngajat()
+        {
+            Console.WriteLine("Username:");
+            string username = Console.ReadLine();
+            Console.WriteLine("Password");
+            string pass = Console.ReadLine();
+            Console.WriteLine("Name: ");
+            string name = Console.ReadLine();
+            Console.WriteLine("Salariul: ");
+            float sal = float.Parse(Console.ReadLine());
+            Console.WriteLine("Tipul de serviciu: ");
+            string typeserv = Console.ReadLine();
+
+            Angajat newang = Angajat.AngajatBuilder
+                .Create()
+                .SetId(_servicequery.GeneratenextId())
+                .SetUsername(username)
+                .SetPassword(pass)
+                .SetnameAngajat(name)
+                .SetSalariuAnfajat(sal)
+                .SetServiciePerson(typeserv)
+                .Build();
+            return newang;
+
+        }
+        public Client AdaugareClient()
+        {
+                Console.WriteLine("Username:");
+                string userna = Console.ReadLine();
+                Console.WriteLine("Password");
+                string password = Console.ReadLine();
+                Console.WriteLine("Name: ");
+                string names = Console.ReadLine();
+                Console.WriteLine("Varsta: ");
+                int age = int.Parse(Console.ReadLine());
+                Console.WriteLine("Adresa: ");
+                string adress = Console.ReadLine();
 
 
+                Client newcl = Client.ClientBuilder
+                    .Create()
+                    .SetId(_servicequery.GeneratenextId())
+                    .SetUsername(userna)
+                    .SetPassword(password)
+                    .SetNamePerson(names)
+                    .SetAgePerson(age)
+                    .SetAdressPerson(adress)
+                    .Build();
 
-
+                return newcl;
 
 
 
 
 
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public void DeleteUser()
         {
