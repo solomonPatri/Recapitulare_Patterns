@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Recapitulare_Patterns.system;
+using Recapitulare_Patterns.users.exceptions;
+using Microsoft.VisualBasic;
 
 namespace Recapitulare_Patterns.users.Services
 {
@@ -26,16 +29,30 @@ namespace Recapitulare_Patterns.users.Services
         public User ReturnById(int id)
         {
 
-            return this._repo.FindUserById(id);
+            User user = this._repo.FindUserById(id);
+            if (user == null)
+            {
+                throw new UserNotFoundException();
 
 
+            }
+            return user;
         }
 
         public User ReturnByUsername(string username)
         {
             
-           return this._repo.FindUserByUsername(username);
+           User user= this._repo.FindUserByUsername(username);
 
+            if (user == null)
+            {
+
+                throw new UserNotFoundException();
+
+               
+            }
+
+            return user;
         }
 
         public int GeneratenextId()

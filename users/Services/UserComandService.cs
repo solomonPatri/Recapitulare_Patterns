@@ -24,8 +24,24 @@ namespace Recapitulare_Patterns.users.Services
             User  searchedUser=this._repo.FindUserByUsername(user.Username);
             if (searchedUser==null)
             {
+                if (user is Client)
+                {
+                    Client client = user as Client;
 
-               return this._repo.AddUser(user);
+
+                    if (client.Username.Equals(user.Username))
+                    {
+                        return this._repo.AddUser(client);
+                    }
+                }
+                if (user is Angajat)
+                {
+                    Angajat ang = user as Angajat;
+                    if (ang.Username.Equals(user.Username))
+                    {
+                        return this._repo.AddUser(ang);
+                    }
+                }
                 
 
             }
@@ -53,18 +69,39 @@ namespace Recapitulare_Patterns.users.Services
         public User UpdateUser(User user)
         {
 
-            User update = _repo.FindUserById(user.Id);
+            User update = this._repo.FindUserByUsername(user.Username);
+
             if (update != null)
             {
-         
-                    this._repo.UpdateUser(user);
-                throw new UserNotUpdateException();   //exista dar nu se poate moficia
 
+                if(user is Client)
+                {
+                    Client client = user as Client;
+
+
+                    if (client.Username.Equals(user.Username))
+                    {
+                        throw new UserNotUpdateException();
+                    }
+                }
+                if(user is Angajat)
+                {
+                    Angajat ang = user as Angajat;
+                    if (ang.Username.Equals(user.Username))
+                    {
+                        throw new UserNotUpdateException();
+                    }
+                }
+
+
+                this._repo.UpdateUser(update);
+
+                return update;
 
             }
+            throw new UserNotFoundException();
 
-            throw new UserNotFoundException(); // nu exista atunci returnam mesajul Doesm't Exist!!!
-            
+
 
         }
 

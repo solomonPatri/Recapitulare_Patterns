@@ -184,7 +184,18 @@ namespace Recapitulare_Patterns.users.Repository
             {
                 editableUser.Password = user.Password;
             }
+            if(user is Angajat)
+            {
+                Angajat angajat = (Angajat)user;
+                Angajat editableAng = (Angajat)editableUser;
+                if (angajat.Salariu > 1300)
+                {
+                    editableAng.Salariu = angajat.Salariu;
+                }
 
+
+
+            }
 
             ////verificam fieldurile clientului
             if (user is Client)

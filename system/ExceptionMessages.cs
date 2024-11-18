@@ -12,7 +12,7 @@ namespace Recapitulare_Patterns.system
         public const string UserAlreadyExistException = "The user already exist";
         public const string UserNotFoundException = "The user doesn't exist";
         public const string UserNotUpdateException = "This user can't be modified! Try again";
-
+        public const string UserUsernameEqualsException = "Deja Exista un User cu acelasi Username";
 
 
 
