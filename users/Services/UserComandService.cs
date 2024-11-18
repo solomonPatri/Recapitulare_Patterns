@@ -49,7 +49,7 @@ namespace Recapitulare_Patterns.users.Services
 
             }
 
-            throw new UserAlreadyExistException();
+            throw new UserUsernameEqualsException();
 
 
         }
@@ -61,7 +61,7 @@ namespace Recapitulare_Patterns.users.Services
             if (finduser != null)
             {
                 this._repo.DeleteUser(id);
-                return finduser;
+              
 
                 throw new  UserSuccesDeleteException();
 

@@ -133,7 +133,7 @@ namespace Recapitulare_Patterns
 
                         Console.WriteLine(ad.Message);
 
-                    } catch (UserAlreadyExistException e)
+                    } catch (UserUsernameEqualsException e)
                     {
                         Console.WriteLine(e.Message);
                     }
@@ -172,7 +172,7 @@ namespace Recapitulare_Patterns
 
                         Console.WriteLine(ad.Message);
 
-                    }catch(UserAlreadyExistException es)
+                    }catch(UserUsernameEqualsException es)
                     {
                         Console.WriteLine(es.Message);
                     }
