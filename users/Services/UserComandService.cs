@@ -49,7 +49,7 @@ namespace Recapitulare_Patterns.users.Services
 
             }
 
-            throw new UserUsernameEqualsException();
+            throw new UserAlreadyExistException();
 
 
         }
